@@ -1,0 +1,225 @@
+/* ============================
+   업체찾기 CSS
+   ============================ */
+
+.search-hero {
+  background: linear-gradient(135deg, var(--navy), var(--navy-2));
+  padding: 48px 0;
+  text-align: center;
+}
+.search-title { font-size: clamp(28px, 4vw, 42px); font-weight: 900; color: #fff; margin-bottom: 12px; }
+.search-desc { font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 28px; }
+.search-box {
+  display: flex;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.search-input {
+  flex: 1;
+  padding: 16px 24px;
+  border-radius: 50px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  background: rgba(255,255,255,0.95);
+  font-family: inherit;
+}
+.search-btn {
+  padding: 16px 28px;
+  border-radius: 50px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  border: none;
+}
+.search-btn:hover { background: var(--primary-dark); }
+
+.companies-page-section { padding: 40px 0 80px; }
+.cp-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+/* Filter Sidebar */
+.filter-sidebar { position: sticky; top: 90px; }
+.filter-card {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.filter-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+.filter-list { display: flex; flex-direction: column; gap: 8px; }
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
+}
+.filter-item:hover { background: var(--bg-light); }
+.filter-item input { accent-color: var(--primary); }
+.filter-item.active { color: var(--primary); font-weight: 600; }
+
+.region-filter { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+.region-pill {
+  padding: 6px 14px;
+  border-radius: 50px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.region-pill:hover { border-color: var(--primary); color: var(--primary); }
+.region-pill.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* Companies List */
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.list-count { font-size: 15px; color: var(--text-gray); }
+.list-count strong { color: var(--primary); }
+.list-view-toggle { display: flex; gap: 4px; }
+.view-btn {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.view-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+.companies-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.companies-list-grid.list-view {
+  grid-template-columns: 1fr;
+}
+
+/* Company Detail Card */
+.comp-detail-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 24px;
+  transition: all var(--transition);
+  cursor: pointer;
+  position: relative;
+}
+.comp-detail-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+.cdc-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.cdc-logo {
+  width: 64px; height: 64px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(26,115,232,0.1), rgba(0,198,174,0.1));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px;
+  flex-shrink: 0;
+}
+.cdc-info { flex: 1; }
+.cdc-name { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+.cdc-cat {
+  display: inline-block;
+  background: rgba(26,115,232,0.1);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 50px;
+  margin-bottom: 4px;
+}
+.cdc-location { font-size: 13px; color: var(--text-gray); }
+.cdc-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+.badge-best { background: #fff3cd; color: #856404; }
+.badge-partner { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; }
+.badge-new { background: rgba(0,198,174,0.15); color: var(--secondary); }
+
+.cdc-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.cdc-stars { color: #f39c12; }
+.cdc-rnum { font-size: 15px; font-weight: 700; }
+.cdc-rcnt { font-size: 13px; color: var(--text-gray); }
+
+.cdc-desc { font-size: 14px; color: var(--text-gray); line-height: 1.6; margin-bottom: 12px; }
+.cdc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.cdc-tag {
+  font-size: 12px;
+  background: var(--bg-light);
+  color: var(--text-gray);
+  padding: 4px 10px;
+  border-radius: 50px;
+  border: 1px solid var(--border);
+}
+.cdc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+.cdc-price {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--primary);
+}
+.cdc-btn {
+  padding: 8px 18px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-family: inherit;
+}
+.cdc-btn:hover { transform: scale(1.04); }
+
+@media (max-width: 960px) {
+  .cp-layout { grid-template-columns: 1fr; }
+  .filter-sidebar { position: static; }
+  .companies-list-grid { grid-template-columns: 1fr; }
+}

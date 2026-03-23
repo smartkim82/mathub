@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>견적계산기 - 매트허브</title>
+  <meta name="description" content="지역·평형·범위에 따른 정확한 견적을 계산해보세요. 매트허브 견적계산기로 서비스별 예상 비용을 확인하세요." />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/calculator.css" />
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo" id="logo">
+          <span class="logo-icon">🏠</span>
+          <span class="logo-text">매트<span class="logo-accent">허브</span></span>
+        </a>
+        <nav class="gnb" id="gnb">
+          <ul>
+            <li class="has-sub">
+              <a href="index.html#services">서비스</a>
+              <ul class="sub-menu">
+                <li><a href="services/mattress.html">매트리스 업체</a></li>
+                <li><a href="services/cleaning.html">청소 업체</a></li>
+                <li><a href="services/interior.html">인테리어 업체</a></li>
+                <li><a href="services/curtain.html">커튼 업체</a></li>
+                <li><a href="services/film.html">필름 업체</a></li>
+              </ul>
+            </li>
+            <li><a href="calculator.html" class="active">견적계산기</a></li>
+            <li><a href="companies.html">업체찾기</a></li>
+            <li><a href="reviews.html">후기</a></li>
+            <li><a href="register.html">업체등록</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a href="tel:1688-0000" class="btn-tel">📞 1688-0000</a>
+          <a href="estimate.html" class="btn btn-primary">견적받기</a>
+          <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 견적 계산기 페이지 -->
+  <main class="calc-page">
+    <!-- 페이지 히어로 -->
+    <section class="calc-hero">
+      <div class="container">
+        <div class="page-breadcrumb">
+          <a href="index.html">홈</a> <span>/</span> <span>견적계산기</span>
+        </div>
+        <h1 class="calc-hero-title">🧮 스마트 견적 계산기</h1>
+        <p class="calc-hero-desc">서비스 · 지역 · 평형 · 범위를 선택하면 즉시 예상 견적을 확인할 수 있습니다</p>
+      </div>
+    </section>
+
+    <!-- 계산기 메인 -->
+    <section class="calc-main-section">
+      <div class="container">
+        <div class="calc-layout">
+          <!-- 왼쪽: 계산기 폼 -->
+          <div class="calc-form-panel">
+            <!-- STEP 1: 서비스 선택 -->
+            <div class="calc-step" id="step1">
+              <div class="step-header">
+                <div class="step-badge">STEP 01</div>
+                <h2 class="step-title">서비스 선택</h2>
+              </div>
+              <div class="service-tabs" id="serviceTabs">
+                <button class="svc-tab active" data-service="mattress" onclick="selectService('mattress', this)">
+                  <span class="svc-tab-icon">🛏</span>
+                  <span class="svc-tab-name">매트리스</span>
+                </button>
+                <button class="svc-tab" data-service="cleaning" onclick="selectService('cleaning', this)">
+                  <span class="svc-tab-icon">🧹</span>
+                  <span class="svc-tab-name">청소</span>
+                </button>
+                <button class="svc-tab" data-service="interior" onclick="selectService('interior', this)">
+                  <span class="svc-tab-icon">🏡</span>
+                  <span class="svc-tab-name">인테리어</span>
+                </button>
+                <button class="svc-tab" data-service="curtain" onclick="selectService('curtain', this)">
+                  <span class="svc-tab-icon">🪟</span>
+                  <span class="svc-tab-name">커튼</span>
+                </button>
+                <button class="svc-tab" data-service="film" onclick="selectService('film', this)">
+                  <span class="svc-tab-icon">🎬</span>
+                  <span class="svc-tab-name">필름</span>
+                </button>
+                <button class="svc-tab" data-service="aircon" onclick="selectService('aircon', this)">
+                  <span class="svc-tab-icon">🧴</span>
+                  <span class="svc-tab-name">가전청소</span>
+                </button>
+              </div>
+
+              <!-- 서비스 세부 옵션 -->
+              <div class="svc-detail-wrap" id="svcDetailWrap">
+                <!-- 매트리스 -->
+                <div class="svc-detail active" id="detail-mattress">
+                  <label class="calc-label">세부 서비스</label>
+                  <div class="radio-group" id="mattressOptions">
+                    <label class="radio-card"><input type="radio" name="mattress_type" value="single" checked> <span>싱글/슈퍼싱글</span></label>
+                    <label class="radio-card"><input type="radio" name="mattress_type" value="double"> <span>더블/퀸</span></label>
+                    <label class="radio-card"><input type="radio" name="mattress_type" value="king"> <span>킹 사이즈</span></label>
+                  </div>
+                  <label class="calc-label" style="margin-top:16px">수량</label>
+                  <div class="qty-control">
+                    <button onclick="changeQty('mattress_qty', -1)" id="mqMinus" aria-label="줄이기">−</button>
+                    <span id="mattress_qty" data-val="1">1개</span>
+                    <button onclick="changeQty('mattress_qty', 1)" id="mqPlus" aria-label="늘리기">+</button>
+                  </div>
+                  <label class="calc-label" style="margin-top:16px">추가 서비스</label>
+                  <div class="checkbox-group">
+                    <label class="check-card"><input type="checkbox" name="extra" value="steam"> <span>🔥 스팀 살균</span></label>
+                    <label class="check-card"><input type="checkbox" name="extra" value="deodor"> <span>💨 탈취·향균</span></label>
+                    <label class="check-card"><input type="checkbox" name="extra" value="protect"> <span>🛡 매트리스 커버</span></label>
+                  </div>
+                </div>
+
+                <!-- 청소 -->
+                <div class="svc-detail" id="detail-cleaning">
+                  <label class="calc-label">청소 종류</label>
+                  <div class="radio-group">
+                    <label class="radio-card"><input type="radio" name="cleaning_type" value="move_in" checked> <span>🏠 입주청소</span></label>
+                    <label class="radio-card"><input type="radio" name="cleaning_type" value="resident"> <span>🧹 거주청소</span></label>
+                    <label class="radio-card"><input type="radio" name="cleaning_type" value="office"> <span>🏢 사무실청소</span></label>
+                    <label class="radio-card"><input type="radio" name="cleaning_type" value="move_out"> <span>📦 이사청소</span></label>
+                  </div>
+                  <label class="calc-label" style="margin-top:16px">추가 서비스</label>
+                  <div class="checkbox-group">
+                    <label class="check-card"><input type="checkbox" name="extra_clean" value="grouting"> <span>줄눈시공</span></label>
+                    <label class="check-card"><input type="checkbox" name="extra_clean" value="aircon"> <span>에어컨청소</span></label>
+                    <label class="check-card"><input type="checkbox" name="extra_clean" value="refrigerator"> <span>냉장고청소</span></label>
+                    <label class="check-card"><input type="checkbox" name="extra_clean" value="washer"> <span>세탁기청소</span></label>
+                  </div>
+                </div>
+
+                <!-- 인테리어 -->
+                <div class="svc-detail" id="detail-interior">
+                  <label class="calc-label">공사 범위 (복수 선택)</label>
+                  <div class="checkbox-group">
+                    <label class="check-card"><input type="checkbox" name="interior_type" value="wallpaper"> <span>🖌 도배</span></label>
+                    <label class="check-card"><input type="checkbox" name="interior_type" value="floor"> <span>🪵 마루·바닥</span></label>
+                    <label class="check-card"><input type="checkbox" name="interior_type" value="bathroom"> <span>🛁 욕실</span></label>
+                    <label class="check-card"><input type="checkbox" name="interior_type" value="kitchen"> <span>🍳 주방</span></label>
+                    <label class="check-card"><input type="checkbox" name="interior_type" value="window"> <span>🪟 창호</span></label>
+                    <label class="check-card"><input type="checkbox" name="interior_type" value="full"> <span>🏠 전체리모델링</span></label>
+                  </div>
+                </div>
+
+                <!-- 커튼 -->
+                <div class="svc-detail" id="detail-curtain">
+                  <label class="calc-label">커튼 종류</label>
+                  <div class="radio-group">
+                    <label class="radio-card"><input type="radio" name="curtain_type" value="curtain" checked> <span>🪟 일반 커튼</span></label>
+                    <label class="radio-card"><input type="radio" name="curtain_type" value="blind"> <span>🏗 블라인드</span></label>
+                    <label class="radio-card"><input type="radio" name="curtain_type" value="roll"> <span>🔄 롤스크린</span></label>
+                    <label class="radio-card"><input type="radio" name="curtain_type" value="both"> <span>2중커튼</span></label>
+                  </div>
+                  <label class="calc-label" style="margin-top:16px">방 수</label>
+                  <div class="qty-control">
+                    <button onclick="changeQty('curtain_qty', -1)">−</button>
+                    <span id="curtain_qty" data-val="1">1개</span>
+                    <button onclick="changeQty('curtain_qty', 1)">+</button>
+                  </div>
+                </div>
+
+                <!-- 필름 -->
+                <div class="svc-detail" id="detail-film">
+                  <label class="calc-label">필름 종류</label>
+                  <div class="radio-group">
+                    <label class="radio-card"><input type="radio" name="film_type" value="insulation" checked> <span>🌡 단열필름</span></label>
+                    <label class="radio-card"><input type="radio" name="film_type" value="security"> <span>🔒 방범필름</span></label>
+                    <label class="radio-card"><input type="radio" name="film_type" value="uv"> <span>☀ 자외선차단</span></label>
+                    <label class="radio-card"><input type="radio" name="film_type" value="privacy"> <span>👁 시선차단</span></label>
+                  </div>
+                  <label class="calc-label" style="margin-top:16px">창문 수</label>
+                  <div class="qty-control">
+                    <button onclick="changeQty('film_qty', -1)">−</button>
+                    <span id="film_qty" data-val="1">1개</span>
+                    <button onclick="changeQty('film_qty', 1)">+</button>
+                  </div>
+                </div>
+
+                <!-- 가전청소 -->
+                <div class="svc-detail" id="detail-aircon">
+                  <label class="calc-label">가전 선택 (복수 가능)</label>
+                  <div class="checkbox-group">
+                    <label class="check-card"><input type="checkbox" name="appliance" value="wallaircon"> <span>🌬 벽걸이 에어컨</span></label>
+                    <label class="check-card"><input type="checkbox" name="appliance" value="standaircon"> <span>💨 스탠드 에어컨</span></label>
+                    <label class="check-card"><input type="checkbox" name="appliance" value="washer"> <span>🫧 세탁기</span></label>
+                    <label class="check-card"><input type="checkbox" name="appliance" value="fridge"> <span>🧊 냉장고</span></label>
+                    <label class="check-card"><input type="checkbox" name="appliance" value="oven"> <span>🔥 오븐</span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 2: 지역 선택 -->
+            <div class="calc-step" id="step2">
+              <div class="step-header">
+                <div class="step-badge">STEP 02</div>
+                <h2 class="step-title">지역 선택</h2>
+              </div>
+              <div class="region-grid" id="regionGrid">
+                <button class="region-btn" onclick="selectRegion('서울', this)">서울</button>
+                <button class="region-btn" onclick="selectRegion('경기', this)">경기</button>
+                <button class="region-btn" onclick="selectRegion('인천', this)">인천</button>
+                <button class="region-btn" onclick="selectRegion('부산', this)">부산</button>
+                <button class="region-btn" onclick="selectRegion('대구', this)">대구</button>
+                <button class="region-btn" onclick="selectRegion('대전', this)">대전</button>
+                <button class="region-btn" onclick="selectRegion('광주', this)">광주</button>
+                <button class="region-btn" onclick="selectRegion('울산', this)">울산</button>
+                <button class="region-btn" onclick="selectRegion('세종', this)">세종</button>
+                <button class="region-btn" onclick="selectRegion('강원', this)">강원</button>
+                <button class="region-btn" onclick="selectRegion('충북', this)">충북</button>
+                <button class="region-btn" onclick="selectRegion('충남', this)">충남</button>
+                <button class="region-btn" onclick="selectRegion('전북', this)">전북</button>
+                <button class="region-btn" onclick="selectRegion('전남', this)">전남</button>
+                <button class="region-btn" onclick="selectRegion('경북', this)">경북</button>
+                <button class="region-btn" onclick="selectRegion('경남', this)">경남</button>
+                <button class="region-btn" onclick="selectRegion('제주', this)">제주</button>
+              </div>
+            </div>
+
+            <!-- STEP 3: 평형 선택 -->
+            <div class="calc-step" id="step3">
+              <div class="step-header">
+                <div class="step-badge">STEP 03</div>
+                <h2 class="step-title">평형 선택</h2>
+              </div>
+              <div class="size-slider-wrap">
+                <div class="size-display">
+                  <span class="size-num" id="sizeNum">25</span>
+                  <span class="size-unit">평</span>
+                </div>
+                <input type="range" id="sizeSlider" min="10" max="100" value="25" step="1" class="size-slider" oninput="updateSize(this.value)">
+                <div class="size-marks">
+                  <span onclick="setSizeVal(10)">10평</span>
+                  <span onclick="setSizeVal(25)">25평</span>
+                  <span onclick="setSizeVal(34)">34평</span>
+                  <span onclick="setSizeVal(50)">50평</span>
+                  <span onclick="setSizeVal(80)">80평+</span>
+                </div>
+                <div class="sqm-display">약 <strong id="sqmNum">82.6</strong> ㎡</div>
+              </div>
+              <!-- 빠른 평형 선택 -->
+              <div class="quick-sizes">
+                <button class="qs-btn" onclick="setSizeVal(10)">10평</button>
+                <button class="qs-btn" onclick="setSizeVal(15)">15평</button>
+                <button class="qs-btn" onclick="setSizeVal(20)">20평</button>
+                <button class="qs-btn" onclick="setSizeVal(25)">25평</button>
+                <button class="qs-btn" onclick="setSizeVal(30)">30평</button>
+                <button class="qs-btn" onclick="setSizeVal(34)">34평</button>
+                <button class="qs-btn" onclick="setSizeVal(40)">40평</button>
+                <button class="qs-btn" onclick="setSizeVal(50)">50평</button>
+              </div>
+            </div>
+
+            <!-- STEP 4: 주택 유형 -->
+            <div class="calc-step" id="step4">
+              <div class="step-header">
+                <div class="step-badge">STEP 04</div>
+                <h2 class="step-title">주택 유형</h2>
+              </div>
+              <div class="house-types">
+                <button class="house-type-btn active" onclick="selectHouseType('아파트', this)" id="htApt">
+                  <span class="ht-icon">🏢</span>
+                  <span class="ht-name">아파트</span>
+                </button>
+                <button class="house-type-btn" onclick="selectHouseType('빌라', this)" id="htVilla">
+                  <span class="ht-icon">🏘</span>
+                  <span class="ht-name">빌라/다세대</span>
+                </button>
+                <button class="house-type-btn" onclick="selectHouseType('단독주택', this)" id="htHouse">
+                  <span class="ht-icon">🏡</span>
+                  <span class="ht-name">단독주택</span>
+                </button>
+                <button class="house-type-btn" onclick="selectHouseType('오피스텔', this)" id="htOfficetell">
+                  <span class="ht-icon">🏙</span>
+                  <span class="ht-name">오피스텔</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 계산 버튼 -->
+            <button class="calc-btn" id="calcBtn" onclick="calculateEstimate()">
+              🧮 견적 계산하기
+            </button>
+          </div>
+
+          <!-- 오른쪽: 결과 패널 -->
+          <div class="calc-result-panel" id="calcResultPanel">
+            <!-- 초기 상태 -->
+            <div class="result-initial" id="resultInitial">
+              <div class="ri-icon">🧮</div>
+              <h3>견적 계산 준비 완료!</h3>
+              <p>서비스, 지역, 평형을 선택한 후<br>'견적 계산하기' 버튼을 클릭하세요</p>
+            </div>
+
+            <!-- 결과 -->
+            <div class="result-content" id="resultContent" style="display:none;">
+              <div class="result-header">
+                <div class="result-title">예상 견적 결과</div>
+                <div class="result-date" id="resultDate"></div>
+              </div>
+
+              <div class="result-summary">
+                <div class="rs-service" id="rsSummary">
+                  <span class="rs-icon" id="rsIcon"></span>
+                  <span class="rs-text" id="rsText"></span>
+                </div>
+              </div>
+
+              <div class="price-box">
+                <div class="pb-label">예상 견적 금액</div>
+                <div class="pb-range">
+                  <span class="pb-min" id="priceMin"></span>
+                  <span class="pb-tilde">~</span>
+                  <span class="pb-max" id="priceMax"></span>
+                </div>
+                <div class="pb-unit">원 (VAT 포함)</div>
+              </div>
+
+              <!-- 세부 견적 -->
+              <div class="price-detail">
+                <h4 class="pd-title">견적 구성 상세</h4>
+                <div id="priceBreakdown"></div>
+              </div>
+
+              <!-- 매칭 업체 미리보기 -->
+              <div class="match-panel">
+                <h4 class="mp-title">
+                  🏆 매칭 업체
+                  <span class="mp-count" id="matchCount"></span>
+                </h4>
+                <div class="mp-list" id="matchList"></div>
+              </div>
+
+              <!-- 액션 버튼 -->
+              <div class="result-actions">
+                <button class="btn btn-primary btn-lg" onclick="window.location.href='estimate.html'" id="btnGetEstimate">📋 전문가 견적 받기</button>
+                <button class="btn btn-outline" onclick="resetCalc()" id="btnReset">다시 계산하기</button>
+              </div>
+
+              <div class="result-note">
+                <strong>⚠ 안내:</strong> 위 견적은 평균 시장가 기반의 예상 금액입니다. 
+                현장 상태, 자재 등급, 추가 옵션에 따라 실제 견적은 달라질 수 있습니다.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 견적 안내 테이블 -->
+        <div class="price-table-section">
+          <div class="section-header">
+            <div class="section-badge">서비스별 기준 요금</div>
+            <h2 class="section-title">평형별 <span class="gradient-text">기준 요금</span> 안내</h2>
+            <p class="section-desc">아래 표는 평균 시장가 기준이며 지역 및 조건에 따라 달라질 수 있습니다</p>
+          </div>
+
+          <!-- 서비스 탭 -->
+          <div class="table-tabs" id="tableTabs">
+            <button class="tt-btn active" onclick="switchTable('cleaning', this)">청소</button>
+            <button class="tt-btn" onclick="switchTable('mattress', this)">매트리스</button>
+            <button class="tt-btn" onclick="switchTable('interior', this)">인테리어</button>
+            <button class="tt-btn" onclick="switchTable('curtain', this)">커튼</button>
+            <button class="tt-btn" onclick="switchTable('film', this)">필름</button>
+          </div>
+
+          <div class="price-table-wrap" id="priceTableWrap">
+            <!-- JS로 렌더링 -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-bottom" style="padding: 24px 0;">
+        <div class="footer-info">
+          <p>매트허브 주식회사 | 대표: 홍길동 | 사업자등록번호: 123-45-67890</p>
+          <p>전화: 1688-0000 | 이메일: hello@matthub.kr</p>
+        </div>
+        <div class="footer-copy">© 2024 매트허브. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-btns">
+    <a href="tel:1688-0000" class="fb-item fb-tel" title="전화문의">📞</a>
+    <button class="fb-item fb-top" onclick="scrollToTop()" title="맨 위로">↑</button>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/calculator.js"></script>
+</body>
+</html>

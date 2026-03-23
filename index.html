@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>매트허브 - 홈서비스 전문 업체 연결 플랫폼</title>
+  <meta name="description" content="매트허브는 층간소음매트·유아매트·노인매트·반려동물매트·시설매트·매트리스 청소·인테리어·커튼·필름 등 전문 업체를 연결해드리는 플랫폼입니다. 견적 후 계약금 입금, 전문가가 직접 연결합니다." />
+  <meta property="og:title" content="매트허브 - 홈서비스 전문 업체 연결 플랫폼" />
+  <meta property="og:description" content="견적받고 계약금 입금 → 전문가가 직접 연결! 매트·청소·인테리어·커튼·필름 전문업체" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 상단 공지 바 -->
+  <div class="top-bar" id="topBar">
+    <div class="container">
+      <span>🤖 AI 매칭 시스템 오픈! 시공팀·매트회사 파트너 모집 중 · 3개월 무료</span>
+      <button class="top-bar-close" id="topBarClose" aria-label="닫기">✕</button>
+    </div>
+  </div>
+
+  <!-- 헤더 -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo" id="logo">
+          <span class="logo-icon">🏠</span>
+          <span class="logo-text">매트<span class="logo-accent">허브</span></span>
+        </a>
+
+        <nav class="gnb" id="gnb">
+          <ul>
+            <li class="has-sub"><a href="#services">서비스</a>
+              <ul class="sub-menu">
+                <li><a href="services/floor-mat.html">🔇 층간소음매트</a></li>
+                <li><a href="services/baby-mat.html">👶 유아매트</a></li>
+                <li><a href="services/senior-mat.html">🧓 노인매트</a></li>
+                <li><a href="services/pet-mat.html">🐾 반려동물매트</a></li>
+                <li><a href="services/facility-mat.html">🏢 시설매트</a></li>
+                <li><a href="services/mattress.html">🛏 매트리스청소</a></li>
+                <li><a href="services/cleaning.html">🧹 청소 업체</a></li>
+                <li><a href="services/interior.html">🏡 인테리어 업체</a></li>
+                <li><a href="services/curtain.html">🪟 커튼 업체</a></li>
+                <li><a href="services/film.html">🎬 필름 업체</a></li>
+              </ul>
+            </li>
+            <li><a href="calculator.html">견적계산기</a></li>
+            <li><a href="companies.html">업체찾기</a></li>
+            <li><a href="reviews.html">후기</a></li>
+            <li class="has-sub"><a href="#">파트너 지원</a>
+              <ul class="sub-menu">
+                <li><a href="partner-team.html">🔨 시공팀 지원</a></li>
+                <li><a href="partner-company.html">🏭 매트회사 지원</a></li>
+                <li><a href="register.html">📋 일반 업체등록</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="tel:1688-0000" class="btn-tel">📞 1688-0000</a>
+          <a href="estimate.html" class="btn btn-primary" id="btnEstimate">견적받기</a>
+          <button class="hamburger" id="hamburger" aria-label="메뉴">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 모바일 메뉴 -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a href="services/floor-mat.html">🔇 층간소음매트</a></li>
+        <li><a href="services/baby-mat.html">👶 유아매트</a></li>
+        <li><a href="services/senior-mat.html">🧓 노인매트</a></li>
+        <li><a href="services/pet-mat.html">🐾 반려동물매트</a></li>
+        <li><a href="services/facility-mat.html">🏢 시설매트</a></li>
+        <li><a href="services/mattress.html">🛏 매트리스청소</a></li>
+        <li><a href="services/cleaning.html">🧹 청소 업체</a></li>
+        <li><a href="calculator.html">🧮 견적계산기</a></li>
+        <li><a href="companies.html">🔍 업체찾기</a></li>
+        <li><a href="partner-team.html">🔨 시공팀 지원</a></li>
+        <li><a href="partner-company.html">🏭 매트회사 지원</a></li>
+        <li><a href="register.html">📋 업체등록</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 메인 히어로 -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">🏆 No.1 홈서비스 전문 업체 연결 플랫폼</div>
+        <h1 class="hero-title">
+          견적 받고<br />
+          <span class="gradient-text">전문가가 직접</span><br />
+          연결해드립니다
+        </h1>
+        <p class="hero-desc">층간소음매트 · 유아매트 · 노인매트 · 반려동물매트 · 매트리스 · 청소 · 인테리어 · 커튼 · 필름<br>견적 확인 후 계약금 입금 → 담당자가 최적 업체 직접 연결!</p>
+
+        <!-- 퀵 견적 폼 -->
+        <div class="quick-estimate" id="quickEstimate">
+          <div class="qe-title">📋 빠른 견적 신청 → 전문가 직접 연결</div>
+          <div class="qe-form">
+            <select id="qeService" class="qe-select">
+              <option value="">서비스 선택</option>
+              <option value="floor-mat">🔇 층간소음매트</option>
+              <option value="baby-mat">👶 유아매트</option>
+              <option value="senior-mat">🧓 노인매트</option>
+              <option value="pet-mat">🐾 반려동물매트</option>
+              <option value="facility-mat">🏢 시설매트</option>
+              <option value="mattress">🛏 매트리스청소</option>
+              <option value="cleaning">🧹 입주청소</option>
+              <option value="interior">🏡 인테리어</option>
+              <option value="curtain">🪟 커튼</option>
+              <option value="film">🎬 필름</option>
+            </select>
+            <select id="qeRegion" class="qe-select">
+              <option value="">지역 선택</option>
+              <option value="서울">서울</option>
+              <option value="경기">경기</option>
+              <option value="인천">인천</option>
+              <option value="부산">부산</option>
+              <option value="대구">대구</option>
+              <option value="대전">대전</option>
+              <option value="광주">광주</option>
+              <option value="울산">울산</option>
+              <option value="세종">세종</option>
+              <option value="강원">강원</option>
+              <option value="충북">충북</option>
+              <option value="충남">충남</option>
+              <option value="전북">전북</option>
+              <option value="전남">전남</option>
+              <option value="경북">경북</option>
+              <option value="경남">경남</option>
+              <option value="제주">제주</option>
+            </select>
+            <select id="qeSize" class="qe-select">
+              <option value="">평형 선택</option>
+              <option value="10">10평 이하</option>
+              <option value="15">15평</option>
+              <option value="20">20평</option>
+              <option value="25">25평</option>
+              <option value="30">30평</option>
+              <option value="34">34평</option>
+              <option value="40">40평</option>
+              <option value="50">50평 이상</option>
+            </select>
+            <button class="btn btn-primary btn-lg" id="btnQuickEstimate" onclick="goCalculator()">견적 계산하기 →</button>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num" data-target="2847">0</span>
+            <span class="stat-label">등록 업체</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-target="48523">0</span>
+            <span class="stat-label">누적 견적</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-target="97">0</span>
+            <span class="stat-label">고객 만족도 %</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="floating-card fc1">
+          <span>🛏</span>
+          <div>
+            <div class="fc-title">매트리스 청소</div>
+            <div class="fc-sub">전문 살균 세척</div>
+          </div>
+        </div>
+        <div class="floating-card fc2">
+          <span>⭐</span>
+          <div>
+            <div class="fc-title">평점 4.9</div>
+            <div class="fc-sub">이번달 후기 1,247건</div>
+          </div>
+        </div>
+        <div class="floating-card fc3">
+          <span>✅</span>
+          <div>
+            <div class="fc-title">검증된 업체</div>
+            <div class="fc-sub">보험·허가 확인완료</div>
+          </div>
+        </div>
+        <div class="hero-img-wrap">
+          <div class="hero-img-bg"></div>
+          <div class="hero-img-content">
+            <div class="apartment-icon">🏢</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 흐르는 업체 태그 -->
+    <div class="tag-ticker">
+      <div class="tag-ticker-inner">
+        <span class="tag">🛏 매트리스청소</span>
+        <span class="tag">🧹 입주청소</span>
+        <span class="tag">🏡 인테리어</span>
+        <span class="tag">🪟 커튼설치</span>
+        <span class="tag">🎬 창문필름</span>
+        <span class="tag">🪟 방충망교체</span>
+        <span class="tag">🧴 에어컨청소</span>
+        <span class="tag">🛁 욕실리모델링</span>
+        <span class="tag">🖌 도배</span>
+        <span class="tag">🪵 마루시공</span>
+        <span class="tag">🛏 매트리스청소</span>
+        <span class="tag">🧹 입주청소</span>
+        <span class="tag">🏡 인테리어</span>
+        <span class="tag">🪟 커튼설치</span>
+        <span class="tag">🎬 창문필름</span>
+        <span class="tag">🪟 방충망교체</span>
+        <span class="tag">🧴 에어컨청소</span>
+        <span class="tag">🛁 욕실리모델링</span>
+        <span class="tag">🖌 도배</span>
+        <span class="tag">🪵 마루시공</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 서비스 카테고리 -->
+  <section class="services-section section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">서비스</div>
+        <h2 class="section-title">필요한 서비스를 <span class="gradient-text">선택</span>하세요</h2>
+        <p class="section-desc">견적 신청 후 계약금 입금 → 담당자가 검증된 전문 업체를 직접 연결해드립니다</p>
+      </div>
+
+      <!-- 계약금 안내 배너 -->
+      <div class="deposit-notice">
+        <div class="dn-icon">💳</div>
+        <div class="dn-text">
+          <strong>계약금 선입금 안내</strong>
+          <span>견적 확인 후 최소 <strong>10만원 단위</strong>로 계약금을 입금하시면, 담당자가 최적의 전문 업체를 직접 연결해드립니다.</span>
+        </div>
+        <a href="estimate.html" class="dn-btn">견적 신청하기 →</a>
+      </div>
+
+      <div class="services-grid services-grid-4" id="servicesGrid">
+
+        <!-- ===== 매트 카테고리 ===== -->
+        <a href="services/floor-mat.html" class="service-card sc-mat" id="svcFloorMat">
+          <div class="sc-new-badge">NEW</div>
+          <div class="sc-icon">🔇</div>
+          <h3 class="sc-title">층간소음매트</h3>
+          <p class="sc-desc">고탄성 특수 소재로 층간소음 차단<br>아파트·빌라 필수 솔루션</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">10만원~</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+        <a href="services/baby-mat.html" class="service-card sc-mat" id="svcBabyMat">
+          <div class="sc-new-badge">NEW</div>
+          <div class="sc-icon">👶</div>
+          <h3 class="sc-title">유아매트</h3>
+          <p class="sc-desc">무독성·항균 인증 유아 안전 매트<br>낙상 방지·놀이방 전용 설계</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">10만원~</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+        <a href="services/senior-mat.html" class="service-card sc-mat" id="svcSeniorMat">
+          <div class="sc-new-badge">NEW</div>
+          <div class="sc-icon">🧓</div>
+          <h3 class="sc-title">노인매트</h3>
+          <p class="sc-desc">낙상 방지·욕창 예방 전문 매트<br>요양원·노인복지시설·가정용</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">10만원~</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+        <a href="services/pet-mat.html" class="service-card sc-mat" id="svcPetMat">
+          <div class="sc-new-badge">NEW</div>
+          <div class="sc-icon">🐾</div>
+          <h3 class="sc-title">반려동물매트</h3>
+          <p class="sc-desc">항균·방수·미끄럼방지 반려동물 매트<br>관절 보호·세탁 가능 소재</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">10만원~</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+        <a href="services/facility-mat.html" class="service-card sc-mat" id="svcFacilityMat">
+          <div class="sc-new-badge">NEW</div>
+          <div class="sc-icon">🏢</div>
+          <h3 class="sc-title">시설매트</h3>
+          <p class="sc-desc">체육관·병원·학교·어린이집·공장<br>용도별 맞춤 시설 매트 공급</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">견적문의</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+        <!-- ===== 기존 서비스 ===== -->
+        <a href="services/mattress.html" class="service-card" id="svcMattress">
+          <div class="sc-icon">🛏</div>
+          <h3 class="sc-title">매트리스청소</h3>
+          <p class="sc-desc">살균·세척·스팀 클리닝 전문<br>진드기 99.9% 제거 보장</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">3만원~</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+        <a href="services/cleaning.html" class="service-card" id="svcCleaning">
+          <div class="sc-icon">🧹</div>
+          <h3 class="sc-title">청소 업체</h3>
+          <p class="sc-desc">입주청소·거주청소·사무실청소<br>줄눈시공·에어컨청소 전문</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">15만원~</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+        <a href="services/interior.html" class="service-card" id="svcInterior">
+          <div class="sc-icon">🏡</div>
+          <h3 class="sc-title">인테리어 업체</h3>
+          <p class="sc-desc">도배·마루·타일·욕실리모델링<br>전체 리모델링 전문 업체</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">50만원~</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+        <a href="services/curtain.html" class="service-card" id="svcCurtain">
+          <div class="sc-icon">🪟</div>
+          <h3 class="sc-title">커튼 업체</h3>
+          <p class="sc-desc">맞춤제작·블라인드·롤스크린<br>방문 무료 측정 서비스</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">8만원~</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+        <a href="services/film.html" class="service-card" id="svcFilm">
+          <div class="sc-icon">🎬</div>
+          <h3 class="sc-title">필름 업체</h3>
+          <p class="sc-desc">단열·방범·자외선차단 필름<br>시공 후 5년 하자보증</p>
+          <div class="sc-meta">
+            <span class="sc-count">전문가 연결</span>
+            <span class="sc-price">6만원~</span>
+          </div>
+          <div class="sc-arrow">→</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 실시간 견적 요청 -->
+  <section class="live-section section" id="liveSection">
+    <div class="container">
+      <div class="live-header">
+        <div class="live-badge">
+          <span class="live-dot"></span>
+          실시간 견적 요청
+        </div>
+        <a href="estimate.html" class="see-all">전체보기 →</a>
+      </div>
+      <div class="live-list" id="liveList">
+        <!-- JS로 렌더링 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 견적 계산기 CTA -->
+  <section class="calculator-cta section" id="calculatorCta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-left">
+          <div class="cta-badge">🧮 스마트 견적 계산기</div>
+          <h2 class="cta-title">평수·지역·범위별<br><span class="gradient-text">정확한 견적</span>을 확인하세요</h2>
+          <p class="cta-desc">복잡한 계산 없이 몇 번의 클릭으로<br>예상 비용을 바로 확인할 수 있습니다.</p>
+          <a href="calculator.html" class="btn btn-primary btn-lg" id="btnCalc">견적 계산하기 →</a>
+        </div>
+        <div class="cta-right">
+          <div class="calc-preview">
+            <div class="cp-item">
+              <span class="cp-label">서비스</span>
+              <span class="cp-val">입주청소</span>
+            </div>
+            <div class="cp-item">
+              <span class="cp-label">지역</span>
+              <span class="cp-val">서울시 강남구</span>
+            </div>
+            <div class="cp-item">
+              <span class="cp-label">평형</span>
+              <span class="cp-val">32평</span>
+            </div>
+            <div class="cp-divider"></div>
+            <div class="cp-result">
+              <span class="cp-result-label">예상 견적</span>
+              <span class="cp-result-val">280,000 ~ 350,000원</span>
+            </div>
+            <div class="cp-match">
+              <span>🏆 매칭 업체</span>
+              <span>12개 업체</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 이용 방법 -->
+  <section class="how-section section" id="howSection">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">이용방법</div>
+        <h2 class="section-title">4단계로 <span class="gradient-text">간편하게</span></h2>
+        <p class="section-desc">견적 신청부터 서비스 완료까지 담당자가 직접 안내합니다</p>
+      </div>
+      <div class="how-steps">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <div class="step-icon">📋</div>
+          <h3 class="step-title">견적 신청</h3>
+          <p class="step-desc">서비스·지역·평형을 선택해<br>견적 요청서를 작성합니다</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <div class="step-icon">🧮</div>
+          <h3 class="step-title">견적 확인</h3>
+          <p class="step-desc">담당자가 예상 견적을<br>연락처로 안내해드립니다</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <div class="step-icon">💳</div>
+          <h3 class="step-title">계약금 입금</h3>
+          <p class="step-desc">최소 <strong>10만원 단위</strong>로<br>계약금을 입금합니다</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-item">
+          <div class="step-num">04</div>
+          <div class="step-icon">✅</div>
+          <h3 class="step-title">전문가 연결</h3>
+          <p class="step-desc">담당자가 검증된 전문 업체를<br>직접 연결해드립니다</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 추천 업체 -->
+  <section class="companies-section section" id="companiesSection">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">추천 업체</div>
+        <h2 class="section-title"><span class="gradient-text">검증된</span> 전문 업체</h2>
+        <p class="section-desc">매트허브가 직접 심사하고 보증하는 파트너 업체입니다</p>
+      </div>
+      <div class="companies-grid" id="companiesGrid">
+        <!-- JS로 렌더링 -->
+      </div>
+      <div class="text-center" style="margin-top:2rem;">
+        <a href="companies.html" class="btn btn-outline" id="btnMoreCompanies">더 많은 업체 보기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 후기 섹션 -->
+  <section class="reviews-section section" id="reviewsSection">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">고객 후기</div>
+        <h2 class="section-title">실제 이용 <span class="gradient-text">고객 후기</span></h2>
+      </div>
+      <div class="reviews-slider" id="reviewsSlider">
+        <!-- JS로 렌더링 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 파트너 업체 등록 CTA -->
+  <section class="partner-cta section" id="partnerCta">
+    <div class="container">
+      <div class="partner-cta-inner">
+        <div class="partner-left">
+          <h2 class="partner-title">시공팀 · 매트회사이신가요?</h2>
+          <p class="partner-desc">매트허브 <strong>AI 매칭 시스템</strong>으로 영업 없이 고객이 찾아옵니다.<br>처음 <strong>3개월 완전 무료</strong>, 월 기본 수수료 없음!</p>
+          <div class="partner-benefits">
+            <div class="pb-item">🤖 AI가 고객 자동 매칭</div>
+            <div class="pb-item">🆓 3개월 완전 무료 체험</div>
+            <div class="pb-item">💰 월 기본 수수료 없음</div>
+            <div class="pb-item">💳 계약금 선정산 보장</div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="partner-team.html" class="btn btn-white" id="btnPartnerTeam">🔨 시공팀 지원 →</a>
+            <a href="partner-company.html" class="btn" style="background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(255,255,255,0.4);" id="btnPartnerCompany">🏭 매트회사 지원 →</a>
+          </div>
+        </div>
+        <div class="partner-right">
+          <div class="partner-graphic">
+            <div class="pg-icon">🤖</div>
+            <div class="pg-text">
+              <div class="pg-num">AI 매칭</div>
+              <div class="pg-label">자동 연결 시스템</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;background:rgba(255,255,255,0.1);border-radius:12px;padding:16px 20px;">
+            <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:8px;">🎁 현재 혜택</div>
+            <div style="font-size:15px;color:#fff;font-weight:700;">처음 3개월 · 수수료 0원</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-top:4px;">이후 성사 건당 수수료만</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section section" id="faqSection">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">자주 묻는 질문</div>
+        <h2 class="section-title">FAQ</h2>
+      </div>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>계약금은 왜 먼저 입금해야 하나요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>계약금 선입금은 업체와의 신뢰 있는 계약 진행을 위한 절차입니다. 계약금 입금 후 담당자가 검증된 전문 업체를 직접 연결해드립니다. 최소 10만원 단위로 입금하시며, 서비스 불이행 시 전액 환불 처리됩니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>견적 신청은 무료인가요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>네, 견적 신청과 확인은 완전 무료입니다. 담당자가 예상 견적을 안내해드리며, 계약을 진행하실 경우에만 계약금을 입금하시면 됩니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>업체는 어떻게 검증되나요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>매트허브는 사업자 등록증, 관련 면허·허가증, 보험 가입 여부를 직접 확인합니다. 또한 고객 후기 분석과 불만 신고 시스템으로 지속적인 품질 관리를 합니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>견적이 실제 가격과 다를 수 있나요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>계산기는 평균적인 예상 금액을 제공합니다. 실제 현장 상태, 추가 요청사항에 따라 최종 가격은 달라질 수 있습니다. 업체 방문 후 확정 견적을 받으시길 권장합니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>업체 등록 비용이 있나요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>기본 등록은 무료입니다. 프리미엄 상단 노출, 광고 서비스는 별도 유료 요금제가 있습니다. 자세한 내용은 업체등록 페이지를 확인해 주세요.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>서비스 후 불만이 있을 경우 어떻게 하나요?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            <p>매트허브 고객센터(1688-0000)로 연락주시면 업체와의 중재를 도와드립니다. 심각한 피해의 경우 소비자보호법에 따른 조치를 지원합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-icon">🏠</span>
+            <span class="logo-text">매트<span class="logo-accent">허브</span></span>
+          </div>
+          <p class="footer-tagline">홈서비스 전문 업체 연결 플랫폼</p>
+          <p class="footer-desc">지역·평형·범위에 따른 맞춤 견적으로<br>최적의 업체를 연결해드립니다.</p>
+          <div class="footer-sns">
+            <a href="#" class="sns-btn" id="snsKakao">💬 카카오</a>
+            <a href="#" class="sns-btn" id="snsNaver">N 네이버</a>
+            <a href="#" class="sns-btn" id="snsInsta">📸 인스타</a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <div class="fl-group">
+            <h4>서비스</h4>
+            <ul>
+              <li><a href="services/mattress.html">매트리스 업체</a></li>
+              <li><a href="services/cleaning.html">청소 업체</a></li>
+              <li><a href="services/interior.html">인테리어 업체</a></li>
+              <li><a href="services/curtain.html">커튼 업체</a></li>
+              <li><a href="services/film.html">필름 업체</a></li>
+            </ul>
+          </div>
+          <div class="fl-group">
+            <h4>이용안내</h4>
+            <ul>
+              <li><a href="calculator.html">견적계산기</a></li>
+              <li><a href="companies.html">업체찾기</a></li>
+              <li><a href="reviews.html">후기</a></li>
+              <li><a href="register.html">업체등록</a></li>
+              <li><a href="estimate.html">견적받기</a></li>
+            </ul>
+          </div>
+          <div class="fl-group">
+            <h4>고객지원</h4>
+            <ul>
+              <li><a href="#faqSection">자주묻는질문</a></li>
+              <li><a href="contact.html">고객센터</a></li>
+              <li><a href="terms.html">이용약관</a></li>
+              <li><a href="privacy.html">개인정보처리방침</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-info">
+          <p>상호: 매트허브 주식회사 | 대표: 홍길동 | 사업자등록번호: 123-45-67890</p>
+          <p>주소: 서울특별시 강남구 테헤란로 123, 12층 | 전화: 1688-0000 | 이메일: hello@matthub.kr</p>
+          <p>통신판매업신고: 제2024-서울강남-00001호</p>
+        </div>
+        <div class="footer-copy">
+          <p>© 2024 매트허브. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 플로팅 버튼 -->
+  <div class="floating-btns" id="floatingBtns">
+    <a href="tel:1688-0000" class="fb-item fb-tel" title="전화문의">📞</a>
+    <a href="#" class="fb-item fb-kakao" title="카카오 문의" id="kakaoBtn">💬</a>
+    <button class="fb-item fb-top" id="scrollTop" title="맨 위로" onclick="scrollToTop()">↑</button>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

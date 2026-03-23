@@ -1,0 +1,160 @@
+/* ============================
+   서비스 페이지 공통 CSS
+   ============================ */
+
+/* 서비스 히어로 */
+.svc-page-hero {
+  background: linear-gradient(135deg, var(--navy), var(--navy-2));
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+.svc-page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 50%, rgba(26,115,232,0.2), transparent 60%);
+}
+.svc-hero-content { position: relative; z-index: 1; }
+.page-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 20px;
+}
+.page-breadcrumb a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+.page-breadcrumb a:hover { color: var(--secondary); }
+.page-breadcrumb span { color: rgba(255,255,255,0.4); }
+
+.svc-hero-icon { font-size: 56px; margin-bottom: 16px; }
+.svc-hero-title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.svc-hero-desc {
+  font-size: 17px;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+.svc-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 600;
+  border: 2px solid rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.9);
+  transition: all 0.2s;
+}
+.btn-outline-white:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+
+.svc-hero-stats { display: flex; gap: 24px; align-items: center; }
+.sh-stat { text-align: center; }
+.sh-num { display: block; font-size: 28px; font-weight: 900; color: #fff; }
+.sh-label { font-size: 13px; color: rgba(255,255,255,0.65); }
+.sh-div { width: 1px; height: 36px; background: rgba(255,255,255,0.25); }
+
+/* 서비스 카드 그리드 */
+.svc-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.svc-type-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 28px 22px;
+  text-align: center;
+  transition: all var(--transition);
+}
+.svc-type-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+.stc-icon { font-size: 40px; margin-bottom: 14px; }
+.stc-title { font-size: 17px; font-weight: 800; margin-bottom: 10px; }
+.stc-desc { font-size: 14px; color: var(--text-gray); line-height: 1.6; margin-bottom: 14px; }
+.stc-price { font-size: 15px; font-weight: 700; color: var(--primary); background: rgba(26,115,232,0.08); padding: 6px 12px; border-radius: 50px; display: inline-block; }
+
+/* 가격 테이블 */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.info-table th {
+  background: linear-gradient(135deg, var(--navy), var(--navy-2));
+  color: #fff;
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 700;
+}
+.info-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+.info-table tr:hover td { background: rgba(26,115,232,0.03); }
+.info-table tr:last-child td { border-bottom: none; }
+.table-note { font-size: 13px; color: var(--text-light); margin-top: 10px; }
+
+/* 프로세스 스텝 */
+.process-steps {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-light);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  flex-wrap: wrap;
+}
+.ps-item {
+  text-align: center;
+  flex: 1;
+  min-width: 100px;
+}
+.ps-num {
+  font-size: 36px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px;
+}
+.ps-icon { font-size: 28px; margin-bottom: 8px; }
+.ps-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.ps-item p { font-size: 12px; color: var(--text-gray); }
+.ps-arrow { font-size: 20px; color: var(--text-light); }
+
+/* Service CTA Box */
+.svc-cta-box {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  text-align: center;
+  color: #fff;
+}
+.svc-cta-box h3 { font-size: 28px; font-weight: 900; margin-bottom: 10px; }
+.svc-cta-box p { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+.svc-cta-box div { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .svc-cards-grid { grid-template-columns: repeat(2,1fr); }
+  .process-steps { flex-direction: column; }
+  .ps-arrow { transform: rotate(90deg); }
+}
+@media (max-width: 600px) {
+  .svc-cards-grid { grid-template-columns: 1fr; }
+}

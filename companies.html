@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>업체찾기 - 매트허브</title>
+  <meta name="description" content="매트허브 에 입점된 매트리스, 청소, 인테리어, 커튼, 필름 등 전문 업체를 지역별로 찾아보세요." />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/companies.css" />
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">🏠</span>
+          <span class="logo-text">매트<span class="logo-accent">허브</span></span>
+        </a>
+        <nav class="gnb">
+          <ul>
+            <li class="has-sub"><a href="index.html#services">서비스</a>
+              <ul class="sub-menu">
+                <li><a href="services/mattress.html">매트리스 업체</a></li>
+                <li><a href="services/cleaning.html">청소 업체</a></li>
+                <li><a href="services/interior.html">인테리어 업체</a></li>
+                <li><a href="services/curtain.html">커튼 업체</a></li>
+                <li><a href="services/film.html">필름 업체</a></li>
+              </ul>
+            </li>
+            <li><a href="calculator.html">견적계산기</a></li>
+            <li><a href="companies.html" class="active">업체찾기</a></li>
+            <li><a href="reviews.html">후기</a></li>
+            <li><a href="register.html">업체등록</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a href="tel:1688-0000" class="btn-tel">📞 1688-0000</a>
+          <a href="estimate.html" class="btn btn-primary">견적받기</a>
+          <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 검색 히어로 -->
+    <section class="search-hero">
+      <div class="container">
+        <h1 class="search-title">🔍 전문 업체 찾기</h1>
+        <p class="search-desc">지역, 서비스 유형, 평점으로 최적의 업체를 찾아보세요</p>
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="업체명, 서비스, 지역으로 검색..." class="search-input" oninput="filterCompanies()" />
+          <button class="search-btn" onclick="filterCompanies()">🔍 검색</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 필터 + 리스트 -->
+    <section class="companies-page-section">
+      <div class="container">
+        <div class="cp-layout">
+          <!-- 필터 사이드바 -->
+          <aside class="filter-sidebar">
+            <div class="filter-card">
+              <h3 class="filter-title">서비스 유형</h3>
+              <div class="filter-list" id="filterService">
+                <label class="filter-item active"><input type="checkbox" value="all" checked onchange="filterByService('all')"> 전체</label>
+                <label class="filter-item"><input type="checkbox" value="mattress" onchange="filterByService('mattress')"> 🛏 매트리스</label>
+                <label class="filter-item"><input type="checkbox" value="cleaning" onchange="filterByService('cleaning')"> 🧹 청소</label>
+                <label class="filter-item"><input type="checkbox" value="interior" onchange="filterByService('interior')"> 🏡 인테리어</label>
+                <label class="filter-item"><input type="checkbox" value="curtain" onchange="filterByService('curtain')"> 🪟 커튼</label>
+                <label class="filter-item"><input type="checkbox" value="film" onchange="filterByService('film')"> 🎬 필름</label>
+                <label class="filter-item"><input type="checkbox" value="aircon" onchange="filterByService('aircon')"> 🧴 가전청소</label>
+              </div>
+            </div>
+
+            <div class="filter-card">
+              <h3 class="filter-title">지역</h3>
+              <div class="filter-list region-filter" id="filterRegion">
+                <button class="region-pill active" onclick="filterByRegion('전체', this)">전체</button>
+                <button class="region-pill" onclick="filterByRegion('서울', this)">서울</button>
+                <button class="region-pill" onclick="filterByRegion('경기', this)">경기</button>
+                <button class="region-pill" onclick="filterByRegion('인천', this)">인천</button>
+                <button class="region-pill" onclick="filterByRegion('부산', this)">부산</button>
+                <button class="region-pill" onclick="filterByRegion('대구', this)">대구</button>
+                <button class="region-pill" onclick="filterByRegion('대전', this)">대전</button>
+                <button class="region-pill" onclick="filterByRegion('제주', this)">제주</button>
+              </div>
+            </div>
+
+            <div class="filter-card">
+              <h3 class="filter-title">평점</h3>
+              <div class="filter-list">
+                <label class="filter-item"><input type="radio" name="rating" value="0" checked onchange="filterByRating(0)"> 전체</label>
+                <label class="filter-item"><input type="radio" name="rating" value="4.5" onchange="filterByRating(4.5)"> ⭐ 4.5 이상</label>
+                <label class="filter-item"><input type="radio" name="rating" value="4.0" onchange="filterByRating(4.0)"> ⭐ 4.0 이상</label>
+              </div>
+            </div>
+
+            <div class="filter-card">
+              <h3 class="filter-title">정렬</h3>
+              <div class="filter-list">
+                <label class="filter-item"><input type="radio" name="sort" value="review" checked onchange="sortCompanies('review')"> 후기순</label>
+                <label class="filter-item"><input type="radio" name="sort" value="rating" onchange="sortCompanies('rating')"> 평점순</label>
+                <label class="filter-item"><input type="radio" name="sort" value="price" onchange="sortCompanies('price')"> 가격순</label>
+              </div>
+            </div>
+          </aside>
+
+          <!-- 업체 목록 -->
+          <div class="companies-list-wrap">
+            <div class="list-header">
+              <span class="list-count" id="listCount">전체 <strong>24</strong>개 업체</span>
+              <div class="list-view-toggle">
+                <button class="view-btn active" onclick="setView('grid', this)" id="viewGrid">⊞</button>
+                <button class="view-btn" onclick="setView('list', this)" id="viewList">☰</button>
+              </div>
+            </div>
+            <div class="companies-list-grid" id="companiesListGrid">
+              <!-- JS로 렌더링 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="padding:24px 0;">
+        <div class="footer-info">
+          <p>매트허브 주식회사 | 전화: 1688-0000 | 이메일: hello@matthub.kr</p>
+        </div>
+        <div class="footer-copy">© 2024 매트허브. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-btns">
+    <a href="tel:1688-0000" class="fb-item fb-tel">📞</a>
+    <button class="fb-item fb-top" onclick="scrollToTop()">↑</button>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/companies.js"></script>
+</body>
+</html>
