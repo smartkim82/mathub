@@ -4,7 +4,7 @@
 
 // ====== 상태 변수 ======
 let calcState = {
-  service: 'mattress',
+  service: 'floormat',
   region: '',
   size: 25,
   houseType: '아파트',
@@ -101,6 +101,26 @@ function changeQty(id, delta) {
 
 // ====== 견적 계산 데이터 ======
 const PRICE_DATA = {
+  floormat: {
+    icon: '🔇', name: '층간소음매트',
+    perPyeong: { eva: 18000, foam: 24000, cork: 32000, rubber: 28000, underlay: 38000 }
+  },
+  babymat: {
+    icon: '👶', name: '유아매트',
+    perPyeong: { puzzle: 22000, folding: 35000, roll: 28000, premium: 55000 }
+  },
+  seniormat: {
+    icon: '🧓', name: '노인매트',
+    perPyeong: { antifall: 40000, bedsore: 55000, medical: 70000 }
+  },
+  petmat: {
+    icon: '🐾', name: '반려동물매트',
+    perPyeong: { joint: 30000, waterproof: 25000, cooling: 35000, heating: 45000 }
+  },
+  facilitymat: {
+    icon: '🏢', name: '시설매트',
+    perSqm: { gym: 35000, hospital: 50000, school: 28000, daycare: 42000, factory: 22000 }
+  },
   mattress: {
     icon: '🛏', name: '매트리스 청소',
     basePrice: { single: 35000, double: 45000, king: 60000 },
@@ -120,7 +140,7 @@ const PRICE_DATA = {
     baseByType: { curtain: 80000, blind: 65000, roll: 55000, both: 140000 }
   },
   film: {
-    icon: '🎬', name: '창문 필름',
+    icon: '🪟', name: '창문 필름(썬팅)',
     pricePerWindow: { insulation: 45000, security: 55000, uv: 35000, privacy: 40000 }
   },
   aircon: {
@@ -198,7 +218,53 @@ function computePrice(service, region, size, houseType) {
   let baseMin = 0, baseMax = 0;
   const breakdown = [];
 
-  if (service === 'mattress') {
+  if (service === 'floormat') {
+    const typeEl = document.querySelector('input[name="floormat_type"]:checked');
+    const type = typeEl ? typeEl.value : 'eva';
+    const ppq = PRICE_DATA.floormat.perPyeong[type];
+    const base = ppq * size;
+    baseMin = base * 0.9; baseMax = base * 1.2;
+    const tNames = { eva: '에바폼', foam: '방음폼', cork: '코르크', rubber: '고무매트', underlay: '언더레이 시스템' };
+    breakdown.push({ label: `${tNames[type]} (${size}평 × ${ppq.toLocaleString()}원)`, val: `${base.toLocaleString()}원` });
+
+  } else if (service === 'babymat') {
+    const typeEl = document.querySelector('input[name="babymat_type"]:checked');
+    const type = typeEl ? typeEl.value : 'puzzle';
+    const ppq = PRICE_DATA.babymat.perPyeong[type];
+    const base = ppq * size;
+    baseMin = base * 0.9; baseMax = base * 1.2;
+    const tNames = { puzzle: '퍼즐매트', folding: '폴딩매트', roll: '롤매트', premium: '프리미엄 천연소재' };
+    breakdown.push({ label: `${tNames[type]} (${size}평 × ${ppq.toLocaleString()}원)`, val: `${base.toLocaleString()}원` });
+
+  } else if (service === 'seniormat') {
+    const typeEl = document.querySelector('input[name="seniormat_type"]:checked');
+    const type = typeEl ? typeEl.value : 'antifall';
+    const ppq = PRICE_DATA.seniormat.perPyeong[type];
+    const base = ppq * size;
+    baseMin = base * 0.9; baseMax = base * 1.2;
+    const tNames = { antifall: '낙상방지매트', bedsore: '욕창예방매트', medical: '의료용 스펙갈매트' };
+    breakdown.push({ label: `${tNames[type]} (${size}평 × ${ppq.toLocaleString()}원)`, val: `${base.toLocaleString()}원` });
+
+  } else if (service === 'petmat') {
+    const typeEl = document.querySelector('input[name="petmat_type"]:checked');
+    const type = typeEl ? typeEl.value : 'joint';
+    const ppq = PRICE_DATA.petmat.perPyeong[type];
+    const base = ppq * size;
+    baseMin = base * 0.9; baseMax = base * 1.2;
+    const tNames = { joint: '관절보호 폼', waterproof: '방수항균', cooling: '쿨링매트', heating: '온열매트' };
+    breakdown.push({ label: `${tNames[type]} (${size}평 × ${ppq.toLocaleString()}원)`, val: `${base.toLocaleString()}원` });
+
+  } else if (service === 'facilitymat') {
+    const typeEl = document.querySelector('input[name="facilitymat_type"]:checked');
+    const type = typeEl ? typeEl.value : 'gym';
+    const area = size * 3.305785;
+    const ppq = PRICE_DATA.facilitymat.perSqm[type];
+    const base = ppq * area;
+    baseMin = base * 0.85; baseMax = base * 1.15;
+    const tNames = { gym: '체육관·헬스장', hospital: '병원·요양원', school: '학교·유치원', daycare: '어린이집', factory: '공장·물류창고' };
+    breakdown.push({ label: `${tNames[type]} (${area.toFixed(0)}㎡ × ${ppq.toLocaleString()}원)`, val: `${Math.round(base).toLocaleString()}원` });
+
+  } else if (service === 'mattress') {
     const typeEl = document.querySelector('input[name="mattress_type"]:checked');
     const type = typeEl ? typeEl.value : 'single';
     const qty = parseInt(document.getElementById('mattress_qty')?.dataset.val || 1);
@@ -287,14 +353,15 @@ function computePrice(service, region, size, houseType) {
     }
   }
 
-  // 할증 적용
-  baseMin = Math.round(baseMin * regionMul * houseMul / 1000) * 1000;
-  baseMax = Math.round(baseMax * regionMul * houseMul / 1000) * 1000;
+  // ✅ 5% 매트허브 수수료 포함 적용
+  baseMin = Math.round(baseMin * regionMul * houseMul * 1.05 / 1000) * 1000;
+  baseMax = Math.round(baseMax * regionMul * houseMul * 1.05 / 1000) * 1000;
 
   breakdown.push({ label: `지역 할증 (${region})`, val: `×${regionMul.toFixed(2)}` });
   if (houseType !== '아파트') {
     breakdown.push({ label: `주택 유형 (${houseType})`, val: `×${houseMul.toFixed(2)}` });
   }
+  breakdown.push({ label: '플랫폼 수수료 (5%)', val: '적용됨' });
 
   const matchCount = Math.floor(Math.random() * 8) + 5;
 
@@ -312,6 +379,31 @@ function renderBreakdown(breakdown) {
 }
 
 const matchCompanies = {
+  floormat: [
+    { icon: '🔇', name: '하늘매트', rating: '4.9', price: '18,000원/평~' },
+    { icon: '🔇', name: '셀인매트', rating: '4.8', price: '20,000원/평~' },
+    { icon: '🔇', name: '예감매트', rating: '4.8', price: '22,000원/평~' },
+  ],
+  babymat: [
+    { icon: '👶', name: '하늘매트 유아', rating: '4.9', price: '22,000원/평~' },
+    { icon: '👶', name: '팡팡매트', rating: '4.8', price: '24,000원/평~' },
+    { icon: '👶', name: '예감매트 유아', rating: '4.7', price: '26,000원/평~' },
+  ],
+  seniormat: [
+    { icon: '🧓', name: '매트허브 노인전문', rating: '4.9', price: '40,000원/평~' },
+    { icon: '🧓', name: '셀인노인케어', rating: '4.8', price: '45,000원/평~' },
+    { icon: '🧓', name: '안전한매트전문점', rating: '4.7', price: '42,000원/평~' },
+  ],
+  petmat: [
+    { icon: '🐾', name: '멍펫매트', rating: '4.9', price: '30,000원/평~' },
+    { icon: '🐾', name: '팻케어매트', rating: '4.8', price: '28,000원/평~' },
+    { icon: '🐾', name: '얼로매트', rating: '4.7', price: '32,000원/평~' },
+  ],
+  facilitymat: [
+    { icon: '🏢', name: '매트허브 시설전문', rating: '4.9', price: '계약문의' },
+    { icon: '🏢', name: '프로시설매트', rating: '4.8', price: '계약문의' },
+    { icon: '🏢', name: '대형매트납품전문', rating: '4.8', price: '계약문의' },
+  ],
   mattress: [
     { icon: '🛏', name: '클린매트 전문점', rating: '4.9', price: '35,000원~' },
     { icon: '🛏', name: '진드기제거 전문', rating: '4.8', price: '38,000원~' },
@@ -333,9 +425,9 @@ const matchCompanies = {
     { icon: '🪟', name: '커튼전문점', rating: '4.7', price: '90,000원~' },
   ],
   film: [
-    { icon: '🎬', name: '썬텍필름', rating: '4.9', price: '45,000원~' },
-    { icon: '🎬', name: '유리필름전문', rating: '4.8', price: '50,000원~' },
-    { icon: '🎬', name: '단열필름샵', rating: '4.7', price: '48,000원~' },
+    { icon: '🪟', name: '썬팅전문점', rating: '4.9', price: '45,000원~' },
+    { icon: '🪟', name: '유리필름전문', rating: '4.8', price: '50,000원~' },
+    { icon: '🪟', name: '단열썬팅샵', rating: '4.7', price: '48,000원~' },
   ],
   aircon: [
     { icon: '🧴', name: '홈케어서비스', rating: '4.9', price: '70,000원~' },
@@ -375,6 +467,25 @@ function resetCalc() {
 
 // ====== 가격표 ======
 const PRICE_TABLES = {
+  floormat: {
+    headers: ['평형', '에바폼', '방음폼', '코르크', '고무매트', '언더레이'],
+    rows: [
+      ['10평', '170,000~', '227,000~', '303,000~', '265,000~', '360,000~'],
+      ['20평', '340,000~', '454,000~', '605,000~', '529,000~', '719,000~'],
+      ['25평', '425,000~', '567,000~', '756,000~', '662,000~', '898,000~'],
+      ['30평', '510,000~', '680,000~', '907,000~', '794,000~', '1,078,000~'],
+      ['34평', '578,000~', '771,000~', '1,029,000~', '901,000~', '1,221,000~'],
+      ['40평', '680,000~', '907,000~', '1,210,000~', '1,058,000~', '1,437,000~'],
+    ]
+  },
+  babymat: {
+    headers: ['평형', '퍼즐매트', '폴딩매트', '롤매트', '프리미엄'],
+    rows: [
+      ['5평', '104,000~', '165,000~', '132,000~', '260,000~'],
+      ['10평', '208,000~', '330,000~', '265,000~', '520,000~'],
+      ['15평', '312,000~', '496,000~', '397,000~', '779,000~'],
+    ]
+  },
   cleaning: {
     headers: ['평형', '입주청소', '거주청소', '사무실청소', '이사청소'],
     rows: [

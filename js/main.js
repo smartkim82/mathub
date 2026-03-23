@@ -33,15 +33,10 @@ function initTopBar() {
 function initHeader() {
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
+    if (window.scrollY > 80) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
     const scrollTop = document.getElementById('scrollTop');
-    if (scrollTop) {
-      scrollTop.style.opacity = window.scrollY > 300 ? '1' : '0';
-    }
+    if (scrollTop) scrollTop.style.opacity = window.scrollY > 300 ? '1' : '0';
   });
 }
 
@@ -50,12 +45,10 @@ function initHamburger() {
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   if (!hamburger || !mobileMenu) return;
-
   hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('open');
     document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
   });
-
   mobileMenu.addEventListener('click', (e) => {
     if (e.target === mobileMenu) {
       mobileMenu.classList.remove('open');
@@ -69,13 +62,11 @@ function initStats() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const nums = entry.target.querySelectorAll('[data-target]');
-        nums.forEach(el => animateCount(el));
+        entry.target.querySelectorAll('[data-target]').forEach(el => animateCount(el));
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.3 });
-
   const statsSection = document.querySelector('.hero-stats');
   if (statsSection) observer.observe(statsSection);
 }
@@ -85,11 +76,9 @@ function animateCount(el) {
   const duration = 2000;
   const start = performance.now();
   const update = (now) => {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
+    const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 4);
-    const current = Math.floor(eased * target);
-    el.textContent = current.toLocaleString('ko-KR');
+    el.textContent = Math.floor(eased * target).toLocaleString('ko-KR');
     if (progress < 1) requestAnimationFrame(update);
     else el.textContent = target.toLocaleString('ko-KR');
   };
@@ -98,14 +87,14 @@ function animateCount(el) {
 
 // ====== LIVE ESTIMATE LIST ======
 const liveData = [
-  { service: '매트리스청소', region: '서울 강남구', size: '20평', time: '방금 전' },
-  { service: '입주청소', region: '경기 성남시', size: '34평', time: '2분 전' },
-  { service: '커튼설치', region: '인천 연수구', size: '25평', time: '5분 전' },
-  { service: '인테리어', region: '서울 마포구', size: '30평', time: '7분 전' },
-  { service: '창문필름', region: '경기 수원시', size: '40평', time: '12분 전' },
-  { service: '에어컨청소', region: '부산 해운대구', size: '28평', time: '15분 전' },
-  { service: '매트리스청소', region: '서울 송파구', size: '15평', time: '18분 전' },
-  { service: '줄눈시공', region: '경기 고양시', size: '32평', time: '22분 전' },
+  { service: '🔇 층간소음매트', region: '서울 강남구', size: '32평', time: '방금 전' },
+  { service: '👶 유아매트', region: '경기 수원시', size: '25평', time: '2분 전' },
+  { service: '🔇 층간소음매트', region: '인천 송도구', size: '28평', time: '4분 전' },
+  { service: '🧹 입주청소', region: '경기 성남시', size: '34평', time: '7분 전' },
+  { service: '🧓 노인매트', region: '부산 해운대구', size: '시설전체', time: '11분 전' },
+  { service: '🔇 층간소음매트', region: '서울 마포구', size: '30평', time: '14분 전' },
+  { service: '🐾 반려동물매트', region: '경기 고양시', size: '22평', time: '18분 전' },
+  { service: '🏭 시설매트', region: '서울 강서구', size: '체육관', time: '23분 전' },
 ];
 
 function renderLiveList() {
@@ -124,40 +113,40 @@ function renderLiveList() {
 // ====== COMPANIES ======
 const companiesData = [
   {
-    emoji: '🛏', name: '클린매트 전문점', category: '매트리스 업체',
-    location: '서울 강남구 · 전국',
-    rating: 4.9, reviews: 284, verified: true, badge: '파트너',
-    tags: ['살균세척', '스팀클리닝', '진드기제거', '당일가능']
+    emoji: '🔇', name: '하늘매트', category: '층간소음매트 전문',
+    location: '서울·경기 전역',
+    rating: 4.9, reviews: 412, verified: true, badge: '파트너',
+    tags: ['층간소음', 'TPU매트', '유아매트', '현장시공']
+  },
+  {
+    emoji: '🔇', name: '셀인매트', category: '층간소음매트 전문',
+    location: '수도권 전역',
+    rating: 4.8, reviews: 287, verified: true, badge: 'BEST',
+    tags: ['층간소음', '고밀도폼', '맞춤시공', '당일설치']
+  },
+  {
+    emoji: '🔇', name: '예감매트', category: '층간소음·유아매트',
+    location: '전국 출장 가능',
+    rating: 4.8, reviews: 354, verified: true, badge: null,
+    tags: ['층간소음', '친환경소재', '유아안전', '무독성']
+  },
+  {
+    emoji: '🔇', name: '팡팡매트', category: '층간소음·놀이매트',
+    location: '서울·인천·경기',
+    rating: 4.7, reviews: 198, verified: true, badge: null,
+    tags: ['층간소음', '어린이놀이터', '안전인증', '방음']
+  },
+  {
+    emoji: '🏠', name: '매트허브', category: '매트 통합 플랫폼',
+    location: '전국',
+    rating: 5.0, reviews: 2847, verified: true, badge: '공식',
+    tags: ['층간소음', '유아매트', '시설매트', 'AI매칭']
   },
   {
     emoji: '🧹', name: '에이스청소', category: '청소 업체',
     location: '경기 성남시 · 수도권',
-    rating: 4.8, reviews: 521, verified: true, badge: 'BEST',
+    rating: 4.8, reviews: 521, verified: true, badge: null,
     tags: ['입주청소', '줄눈시공', '에어컨청소', '사무실청소']
-  },
-  {
-    emoji: '🏡', name: '프리미엄인테리어', category: '인테리어 업체',
-    location: '서울 전역 · 경기',
-    rating: 4.9, reviews: 183, verified: true, badge: null,
-    tags: ['도배', '마루시공', '욕실리모델링', '전체리모델링']
-  },
-  {
-    emoji: '🪟', name: '맞춤커튼하우스', category: '커튼 업체',
-    location: '서울 · 경기 전역',
-    rating: 4.7, reviews: 342, verified: true, badge: null,
-    tags: ['맞춤제작', '블라인드', '롤스크린', '방문측정']
-  },
-  {
-    emoji: '🎬', name: '썬텍필름', category: '필름 업체',
-    location: '전국 출장 가능',
-    rating: 4.8, reviews: 156, verified: true, badge: 'NEW',
-    tags: ['단열필름', '방범필름', '자외선차단', '당일시공']
-  },
-  {
-    emoji: '🧴', name: '홈케어서비스', category: '통합 홈케어',
-    location: '서울 전역',
-    rating: 4.9, reviews: 467, verified: true, badge: '파트너',
-    tags: ['가전청소', '에어컨', '세탁기', '냉장고청소']
   },
 ];
 
@@ -188,38 +177,68 @@ function renderCompanies() {
   `).join('');
 }
 
-// ====== REVIEWS ======
+// ====== REVIEWS (10개 이상) ======
 const reviewsData = [
   {
     name: '김민준', initials: '김', date: '2024.03.20',
-    service: '매트리스청소', rating: 5,
-    text: '정말 친절하고 꼼꼼하게 청소해주셨어요. 매트리스에서 이상한 냄새가 났었는데 완전히 사라졌습니다. 아이가 있어서 살균이 중요했는데 전문 장비로 완벽하게 해주셔서 너무 만족스러웠어요!'
+    service: '층간소음매트', rating: 5,
+    text: '아래층 소음 문제로 고민이 많았는데 하늘매트에서 층간소음매트 시공하고 나서 정말 달라졌어요! 발걸음 소리가 확실히 줄었고 아이가 뛰어다녀도 걱정이 없어요. 매트허브에서 연결해주셔서 너무 감사합니다.'
   },
   {
     name: '이수진', initials: '이', date: '2024.03.18',
-    service: '입주청소', rating: 5,
-    text: '이사 전날 입주청소를 맡겼는데 정말 완벽했습니다. 새 집처럼 깨끗해졌어요. 화장실부터 주방까지 꼼꼼하게 작업해서 이사 당일 너무 편했어요. 강력 추천합니다!'
+    service: '유아매트', rating: 5,
+    text: '12개월 아기 때문에 안전한 유아매트를 찾고 있었어요. KC 인증 제품으로 무독성이라 안심하고 쓸 수 있어요. 두께도 충분해서 낙상 걱정이 없고 청소도 쉬워서 정말 만족합니다!'
   },
   {
     name: '박성호', initials: '박', date: '2024.03.15',
-    service: '커튼설치', rating: 5,
-    text: '방문 측정부터 설치까지 2일만에 완료했습니다. 원하는 디자인으로 맞춤 제작해주셔서 만족도가 최고예요. 가격도 합리적이고 시공도 깔끔하게 해주셨습니다.'
+    service: '층간소음매트', rating: 5,
+    text: '아파트 32평 전체 층간소음매트 시공했습니다. 셀인매트에서 맞춤 시공해주셨는데 이음새 없이 깔끔하게 완성되고 소음 차단 효과가 정말 뛰어납니다. 계약금 입금 후 당일 연결됐어요!'
   },
   {
     name: '최지우', initials: '최', date: '2024.03.12',
-    service: '창문필름', rating: 4,
-    text: '단열 효과가 정말 대단합니다. 시공 전후로 확실히 냉난방비가 줄었어요. 시공 과정도 꼼꼼하게 설명해주시고 깔끔하게 마무리해 주셨어요. 아주 만족스럽습니다!'
+    service: '노인매트', rating: 5,
+    text: '요양원에서 사용할 낙상방지 매트를 대량 주문했는데 시설 전담 매니저가 배정되어 처음부터 끝까지 도움을 주셨어요. 납품도 빠르고 제품 품질도 의료용 기준에 딱 맞았습니다.'
   },
   {
     name: '정다은', initials: '정', date: '2024.03.10',
-    service: '인테리어', rating: 5,
-    text: '30평 아파트 도배·마루·욕실 리모델링을 한꺼번에 맡겼는데 3주 만에 완성했어요! 매트허브에서 찾은 업체인데 가격 대비 퀄리티가 너무 좋아서 지인들한테 추천 중입니다.'
+    service: '층간소음매트', rating: 5,
+    text: '예감매트에서 친환경 소재로 시공했는데 냄새가 전혀 없고 아이들이 좋아해요. 무독성 인증 제품이라 마음이 편하고, 시공 전 현장 측정도 꼼꼼하게 해주셨어요. 강력 추천합니다!'
   },
   {
     name: '강준혁', initials: '강', date: '2024.03.07',
-    service: '에어컨청소', rating: 5,
-    text: '에어컨에서 곰팡이 냄새가 났었는데 완전히 해결됐어요. 분해 후 세척하고 항균 코팅까지 해주셨습니다. 가격도 저렴하고 직원분이 너무 친절하셨어요. 또 이용할 예정입니다.'
+    service: '반려동물매트', rating: 5,
+    text: '강아지 관절이 안 좋아서 관절보호 매트를 찾고 있었어요. 매트허브에서 연결해준 업체가 소형견 체형에 맞는 두께로 추천해줬고, 미끄럼방지도 완벽해서 댕댕이가 편하게 생활해요!'
   },
+  {
+    name: '윤지혜', initials: '윤', date: '2024.03.05',
+    service: '층간소음매트', rating: 5,
+    text: '팡팡매트에서 어린이 놀이방 전체를 시공했습니다. 안전 인증 확인하고 맡겼는데 작업도 빠르고 정말 꼼꼼하게 해주셨어요. 매트허브 AI 매칭으로 바로 연결돼서 편했어요!'
+  },
+  {
+    name: '임재원', initials: '임', date: '2024.03.03',
+    service: '시설매트', rating: 5,
+    text: '헬스장 200평 고무 바닥재 작업을 의뢰했습니다. B2B 대량 납품이라 걱정했는데 전담 매니저가 배정되어 계약부터 납품까지 완벽하게 진행해주셨어요. 가격도 합리적이라 추천합니다.'
+  },
+  {
+    name: '한소희', initials: '한', date: '2024.02.28',
+    service: '층간소음매트', rating: 4,
+    text: '입주 전에 층간소음매트 시공을 맡겼어요. 하늘매트 TPU 소재로 결정했는데 탄성이 너무 좋고 층간소음이 확실히 줄었습니다. 견적 금액에 5% 계약금 먼저 입금했는데 과정이 투명해서 믿음이 갔어요.'
+  },
+  {
+    name: '오민석', initials: '오', date: '2024.02.25',
+    service: '유아매트', rating: 5,
+    text: '25개월 아이 어린이방 전체를 유아 퍼즐 매트로 깔았어요. 두께가 5cm라 넘어져도 걱정 없고 떼어내서 세탁할 수 있어서 너무 편리해요. 매트허브 통해서 연결된 업체가 설치도 해줬어요!'
+  },
+  {
+    name: '서지은', initials: '서', date: '2024.02.22',
+    service: '층간소음매트', rating: 5,
+    text: '빌라라 층간소음이 심했는데 고밀도 방음 특수폼 매트 시공 후 완전히 달라졌어요! 아래층 주민분도 소음이 줄었다고 고마워하셨어요. 매트허브 AI 매칭이 우리 동네 업체를 바로 연결해줘서 좋았어요.'
+  },
+  {
+    name: '조현우', initials: '조', date: '2024.02.19',
+    service: '반려동물매트', rating: 5,
+    text: '고양이 두 마리 때문에 스크래칭 방지·항균 매트를 찾았어요. 연결해주신 업체에서 고양이 전용 제품으로 추천해줬는데 고양이들이 너무 좋아하고 털 청소도 정말 쉽게 됩니다. 재구매 의향 100%!'
+  }
 ];
 
 function renderReviews() {
@@ -248,13 +267,10 @@ function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const answer = item.querySelector('.faq-a');
   const isOpen = btn.classList.contains('active');
-
-  // Close all
   document.querySelectorAll('.faq-q.active').forEach(q => {
     q.classList.remove('active');
     q.closest('.faq-item').querySelector('.faq-a').style.display = 'none';
   });
-
   if (!isOpen) {
     btn.classList.add('active');
     answer.style.display = 'block';
@@ -272,9 +288,7 @@ function initScrollAnim() {
       }
     });
   }, { threshold: 0.1 });
-
-  const animEls = document.querySelectorAll('.service-card, .company-card, .review-card, .step-item, .faq-item');
-  animEls.forEach((el, i) => {
+  document.querySelectorAll('.service-card, .company-card, .review-card, .step-item, .faq-item').forEach((el, i) => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(24px)';
     el.style.transition = `opacity 0.5s ease ${i * 0.07}s, transform 0.5s ease ${i * 0.07}s`;
@@ -297,9 +311,7 @@ function goCalculator() {
 }
 
 // ====== SCROLL TO TOP ======
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 // ====== KAKAO CHANNEL ======
 document.getElementById('kakaoBtn')?.addEventListener('click', function(e) {
