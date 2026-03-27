@@ -1094,7 +1094,8 @@ img { max-width: 100%; }
   .hero > .container { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
   .qe-form { grid-template-columns: 1fr 1fr; }
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(3, 1fr); }
+  .services-grid-4 { grid-template-columns: repeat(3, 1fr) !important; }
   .companies-grid { grid-template-columns: repeat(2, 1fr); }
   .reviews-slider { grid-template-columns: repeat(2, 1fr); }
   .live-list { grid-template-columns: repeat(2, 1fr); }
@@ -1103,21 +1104,111 @@ img { max-width: 100%; }
   .step-arrow { transform: rotate(90deg); }
   .footer-top { grid-template-columns: 1fr; }
   .footer-links { grid-template-columns: repeat(2, 1fr); }
+  .partner-cta-inner { gap: 32px; }
 }
 
 @media (max-width: 768px) {
+  /* Header */
   .gnb { display: none; }
   .hamburger { display: flex; }
   .btn-tel { display: none; }
-  .qe-form { grid-template-columns: 1fr; }
-  .services-grid { grid-template-columns: 1fr; }
-  .companies-grid { grid-template-columns: 1fr; }
-  .reviews-slider { grid-template-columns: 1fr; }
-  .live-list { grid-template-columns: 1fr; }
+  .header-inner { padding: 12px 0; }
+  .logo-text { font-size: 18px; }
+
+  /* Container */
+  .container { padding: 0 16px; }
+  .section { padding: 48px 0; }
+
+  /* Hero */
+  .hero { padding: 60px 0 40px; }
+  .hero-title { font-size: 30px !important; }
+  .hero-desc { font-size: 14px; }
+  .hero-badge, .hero-stats { font-size: 13px; }
+  .hero-stats { gap: 16px; flex-wrap: wrap; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+
+  /* Quick Estimate Form */
+  .qe-form { grid-template-columns: 1fr; gap: 10px; }
+  .qe-form select, .qe-form input { font-size: 15px; padding: 12px 14px; }
+  .qe-btn { width: 100%; padding: 15px; font-size: 16px; }
+
+  /* 서비스 그리드 - 모바일 2열 */
+  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .services-grid-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
+
+  /* 서비스 카드 */
+  .service-card { padding: 20px 16px; }
+  .sc-icon { font-size: 28px; margin-bottom: 10px; }
+  .sc-title { font-size: 14px; margin-bottom: 6px; }
+  .sc-desc { font-size: 12px; line-height: 1.5; }
+  .sc-meta { margin-top: 10px; }
+  .sc-count { font-size: 11px; padding: 3px 8px; }
+  .sc-price { font-size: 12px; }
+  .sc-arrow { font-size: 14px; }
+  .sc-new-badge { font-size: 9px; padding: 2px 6px; top: 10px; right: 10px; }
+
+  /* 계약금 배너 */
+  .deposit-notice { flex-direction: column; text-align: center; padding: 16px; gap: 12px; }
+  .dn-icon { font-size: 28px; }
+  .dn-text { font-size: 13px; }
+  .dn-btn { width: 100%; text-align: center; padding: 12px; }
+
+  /* 구분선 텍스트 */
+  .section-header { margin-bottom: 32px; }
+  .section-title { font-size: 24px; }
+  .section-desc { font-size: 14px; }
+
+  /* Companies */
+  .companies-grid { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Reviews */
+  .reviews-slider { grid-template-columns: 1fr; gap: 12px; }
+  .review-card { padding: 20px; }
+  .rv-text { font-size: 13px; line-height: 1.7; }
+
+  /* Live list */
+  .live-list { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .live-item { padding: 12px; }
+  .li-service { font-size: 11px; }
+  .li-title { font-size: 13px; }
+
+  /* How steps */
+  .how-steps { flex-direction: column; gap: 16px; }
+  .step-arrow { transform: rotate(90deg); }
+  .step-item { padding: 20px; }
+
+  /* Partner CTA */
   .partner-cta-inner { grid-template-columns: 1fr; text-align: center; }
-  .partner-benefits { grid-template-columns: 1fr; }
-  .section { padding: 56px 0; }
+  .partner-benefits { grid-template-columns: 1fr 1fr; }
+  .partner-right { display: none; }
+
+  /* FAQ */
+  .faq-q { font-size: 14px; padding: 16px 18px; }
+  .faq-a p { font-size: 14px; }
+
+  /* Footer */
+  .footer-links { grid-template-columns: 1fr 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+  .footer-info p { font-size: 12px; }
+
+  /* CTA */
+  .cta-card { padding: 28px 20px; }
+  .cta-card h2 { font-size: 22px; }
+}
+
+@media (max-width: 480px) {
+  /* 아주 작은 화면 추가 처리 */
+  .container { padding: 0 12px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .services-grid-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+  .service-card { padding: 16px 12px; }
+  .sc-icon { font-size: 24px; }
+  .sc-title { font-size: 13px; }
+  .sc-desc { font-size: 11px; }
+  .hero-title { font-size: 26px !important; }
+  .live-list { grid-template-columns: 1fr; }
   .footer-links { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; text-align: center; }
-  .cta-card { padding: 32px 24px; }
+  .partner-benefits { grid-template-columns: 1fr; }
+  .qe-btn { font-size: 15px; }
 }
